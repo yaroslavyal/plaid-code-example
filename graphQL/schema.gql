@@ -1,0 +1,69 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""plaid item connection state"""
+enum PlaidItemConnectionState {
+  Connected
+  LoginRequired
+  PermissionRevoked
+  Removed
+  Verification
+}
+
+"""supported plaid linked item verifications status check"""
+enum PlaidLinkedItemVerificationStatus {
+  AutomaticallyVerified
+  ManuallyVerified
+  PendingAutomaticVerification
+  PendingManualVerification
+  VerificationExpired
+  VerificationFailed
+}
+
+type Query {
+  getPlaidLinkToken(enableAccountSelect: Boolean, itemId: String): String!
+  getUserPlaidBankAccounts(forACHFunding: Boolean, plaidBankAccountList: [UserPlaidIdentifierInput!]): [UserPlaidBankAccount!]!
+}
+
+type UserPlaidBankAccount {
+  accountId: String!
+  accountMask: String!
+  accountName: String!
+  accountSubtype: String!
+  accountType: String!
+  active: Boolean!
+  balanceAvailable: Float
+  balanceCurrent: Float
+  balanceLimit: Float
+  createdAt: DateTime!
+  currency: String!
+  forACHFunding: Boolean!
+  id: ID!
+  plaidItem: UserPlaidItem!
+  updatedAt: DateTime!
+  userId: String!
+  verificationStatus: PlaidLinkedItemVerificationStatus
+}
+
+input UserPlaidIdentifierInput {
+  id: String
+  userPlaidBankAccountId: String
+}
+
+type UserPlaidItem {
+  active: Boolean!
+  connectionState: PlaidItemConnectionState
+  consentExpirationTime: DateTime
+  createdAt: DateTime!
+  id: ID!
+  institutionId: String
+  institutionName: String
+  updatedAt: DateTime!
+  userId: String!
+}
