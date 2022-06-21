@@ -2,7 +2,11 @@
 
 ## Description
 
-Backend
+This example has several modules:
+  - auth - for authorization access.
+  - plaid - shares Plaid client (see https://plaid.com/) for other services.
+  - plaid-link-token - initialises plaid auth link
+  - user-plaid-bank-account and user-plaid-item - stores information taken from Plaid.
 
 ## Provision
 
